@@ -2,6 +2,40 @@ import React, { useState, useEffect, useContext, useLo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "@/context/AuthContext";
 
+/**
+ * Navbar Component
+ *
+ * This component renders the navigation bar for the application.
+ * It dynamically updates based on user authentication and ownership status.
+ *
+ * Features:
+ * - Responsive navigation with a collapsible mobile menu.
+ * - Checks for expired authentication tokens.
+ * - Displays different menu options based on user role (tenant or owner).
+ * - Automatically closes the mobile menu when navigating.
+ *
+ * State & Hooks:
+ * - `isMobileMenuOpen` (boolean): Controls the mobile menu visibility.
+ * - `isOwner` (boolean): Indicates if the logged-in user is a property owner.
+ * - `isAccessTokenValid` (boolean): Validates the user's authentication token.
+ * - `useEffect`: Handles token validation and user property ownership checks.
+ * - `useLocation`: Closes the mobile menu when navigating to a new route.
+ *
+ * Behavior:
+ * - If the user is authenticated, additional dashboard links appear.
+ * - Owners see an extra "Owner" dashboard link.
+ * - If the token expires, the user is logged out automatically.
+ *
+ * Dependencies:
+ * - React (for component state and lifecycle management).
+ * - React Router (`Link`, `useLocation`) for navigation.
+ * - Bootstrap for styling (`navbar`, `nav-link`, `navbar-toggler`).
+ * - AuthContext for authentication state management.
+ *
+ * Usage:
+ * <Navbar />
+ */
+
 const Navbar = () => {
   const { auth } = useContext(AuthContext);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -106,7 +140,7 @@ const Navbar = () => {
                 {isAccessTokenValid && (
                   <>
                     <li className="nav-item">
-                      <Link className="nav-link" to="/cashflows">Cash Flows</Link>
+                      <Link className="nav-link" to="/cash-flows">Cash Flows</Link>
                     </li>
                     <li className="nav-item">
                       <Link className="nav-link" to="/dashboard">Dashboard</Link>

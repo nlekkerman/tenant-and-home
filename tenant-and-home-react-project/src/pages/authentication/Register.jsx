@@ -1,6 +1,41 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom"; // Import Link here
 
+/**
+ * Register Component
+ *
+ * This component handles the user registration process. It allows users to enter their personal details,
+ * create a username and password, and register for the application. If registration is successful,
+ * JWT tokens are stored in localStorage, and the user is redirected to the home page.
+ *
+ * Features:
+ * - Allows the user to input personal details (first name, last name, username, email, password).
+ * - Confirms that the entered passwords match before submitting the form.
+ * - Displays error messages if registration fails.
+ * - Stores the JWT tokens (access and refresh) in localStorage upon successful registration.
+ * - Redirects the user to the home page after successful registration.
+ * - Provides a link to the login page for users who already have an account.
+
+ * Key Functions:
+ * - `handleChange`: Updates the state with form input values.
+ * - `handleSubmit`: Handles the form submission, validates input, and sends the registration request.
+ *
+ * Usage:
+ * ```jsx
+ * <Register />
+ * ```
+ *
+ * Example of how the registration process works:
+ * - The user fills out the registration form with personal details.
+ * - Upon clicking the register button, the form data is validated.
+ * - If successful, JWT tokens are stored in localStorage, and the user is redirected to the home page.
+ * - If passwords do not match or registration fails, an error message is displayed.
+ *
+ * Notes:
+ * - `useNavigate` is used to redirect the user to the home page after successful registration or to the login page if they already have an account.
+ * - Form data includes first name, last name, username, email, password, and confirm password fields.
+ */
+
 const Register = () => {
   const [registerData, setRegisterData] = useState({
     username: "",

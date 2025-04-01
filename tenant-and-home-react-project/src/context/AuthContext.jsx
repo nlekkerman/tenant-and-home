@@ -1,5 +1,40 @@
 import React, { createContext, useState, useEffect } from "react";
 
+/**
+ * Authentication Context (AuthContext)
+ *
+ * This context manages user authentication state, including:
+ * - Storing and retrieving authentication tokens.
+ * - Handling user login and logout.
+ * - Automatically refreshing the access token.
+ *
+ * Features:
+ * - Uses `localStorage` to persist authentication data across sessions.
+ * - Provides functions for login, logout, and token refreshing.
+ * - Automatically logs out the user if the refresh token is missing or invalid.
+ *
+ * State & Hooks:
+ * - `auth` (object): Contains access token, refresh token, and authentication status.
+ * - `useEffect`: Ensures authentication state updates when the access token changes.
+ *
+ * Behavior:
+ * - When a user logs in, tokens are stored in `localStorage` and state is updated.
+ * - When logging out, tokens are removed from `localStorage`, and state resets.
+ * - `refreshToken` attempts to renew an expired access token using the refresh token.
+ * - If token refresh fails, the user is logged out automatically.
+ *
+ * Dependencies:
+ * - React (`createContext`, `useState`, `useEffect`) for managing authentication state.
+ * - Fetch API for making authentication requests to the backend.
+ *
+ * Usage:
+ * ```jsx
+ * <AuthProvider>
+ *   <App />
+ * </AuthProvider>
+ * ```
+ */
+
 // Create Context
 export const AuthContext = createContext();
 

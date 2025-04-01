@@ -3,6 +3,46 @@ import { Card, Image, Button } from "react-bootstrap";
 import { useMessage } from "@/context/MessageContext";
 import { AuthContext } from '@/context/AuthContext'; 
 
+/**
+ * UserProfile Component
+ *
+ * This component fetches and displays the authenticated user's profile information.
+ * It handles authentication, token expiration, error handling, and loading states.
+ *
+ * Features:
+ * - Retrieves user details from the `/me/` API endpoint.
+ * - Checks if the authentication token is expired and refreshes it if necessary.
+ * - Displays a loading state while fetching data.
+ * - Shows an error message if the API request fails.
+ * - Displays user details such as name, email, phone number, profile image, and rating.
+ * - Provides an "Edit Profile" button to navigate to the profile edit page.
+ *
+ * State & Hooks:
+ * - `userData` (object | null): Stores the fetched user profile data.
+ * - `loading` (boolean): Indicates whether data is being loaded.
+ * - `error` (string | null): Stores any error messages.
+ * - `auth` (context): Provides authentication details from `AuthContext`.
+ * - `refreshToken` (function): Refreshes the authentication token if expired.
+ * - `setMessage` (context function): Manages global messages via `MessageContext`.
+ *
+ * Behavior:
+ * - If `loading` is true, a "Loading..." message is displayed.
+ * - If `error` occurs, an error message is shown.
+ * - If `userData` is successfully fetched, user details are displayed in a Bootstrap Card.
+ * - If no profile image is provided, a placeholder image is used.
+ * - The "Edit Profile" button links to the profile editing page.
+ *
+ * Dependencies:
+ * - React (for component logic)
+ * - React-Bootstrap (for UI elements)
+ * - AuthContext (for authentication and token management)
+ * - MessageContext (for global messaging)
+ *
+ * Usage:
+ * <UserProfile />
+ *
+ */
+
 const UserProfile = () => {
     const { auth, refreshToken } = useContext(AuthContext);
     const { setMessage } = useMessage();
